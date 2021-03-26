@@ -25,7 +25,7 @@ pipeline {
         }
         stage('git'){
             steps{
-                git credentialsId: 'e75c5681ea2ec14052c85e1ab2f5cbde0d1cea1f', url: 'https://github.com/eswanthdev/Maven-ci.git'
+                git credentialsId: '950268d2b5a3c43a0f030ab01c3ecff26a392269', url: 'https://github.com/eswanthdev/Maven-ci.git'
                   }
         }
     }
