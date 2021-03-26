@@ -1,14 +1,32 @@
 pipeline {
-    agent none
-        stages {
-            stage ('First_stage') {
-           steps {
-               git credentialsId: 'e75c5681ea2ec14052c85e1ab2f5cbde0d1cea1f', url: 'https://github.com/eswanthdev/Maven-ci.git'
-            }  
-          }
-            stage('second stage') {
+
+    agent {
+        node {
+            label 'master'
+        }
+    }
+
+    options {
+        buildDiscarder logRotator(
+                    daysToKeepStr: '16',
+                    numToKeepStr: '10'
+            )
+    }
+
+    stages {
+
+        stage('Cleanup Workspace') {
             steps {
-                sh 'mvn --version'
+                cleanWs()
+                sh """
+                echo "Cleaned Up Workspace For Project"
+                """
             }
         }
-       } 
+        stage('git'){
+            steps{
+                git credentialsId: 'e75c5681ea2ec14052c85e1ab2f5cbde0d1cea1f', url: 'https://github.com/eswanthdev/Maven-ci.git'
+                  }
+        }
+    }
+   }
