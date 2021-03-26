@@ -3,9 +3,12 @@ pipeline {
         stages {
             stage ('First_stage') {
            steps {
-                sh 'mvn clean package'
-            }
+                git branch: 'main', url: 'https://github.com/eswanthdev/Maven-ci.git'
+            }  
           }
+            stage('second stage') {
+            steps {
+                sh 'mvn --version'
+            }
         }
-     
-             
+       } 
