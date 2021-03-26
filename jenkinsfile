@@ -3,7 +3,7 @@ pipeline {
         stages {
             stage ('First_stage') {
            steps {
-               sh 'git clone https://github.com/eswanthdev/Maven-ci.git'
+               git credentialsId: 'e75c5681ea2ec14052c85e1ab2f5cbde0d1cea1f', url: 'https://github.com/eswanthdev/Maven-ci.git'
             }  
           }
             stage('second stage') {
